@@ -3,7 +3,12 @@
 EmployeeEase is a modern Full Stack Employee Management System designed to simplify and streamline employee data management for any organization. Built using the MERN stack (MongoDB, Express.js, React.js, Node.js), it offers a clean user interface, responsive design, secure authentication, and powerful data visualizations.
 
 ---
+## 🌍 Live Demo
 
+👉 **Live URL:**  
+[🔗 EmployeeEase](https://employee-management-system-frontend-td0u.onrender.com)
+
+---
 ## 🚀 Features
 
 ### ✅ **Frontend (React.js)**
@@ -24,10 +29,6 @@ EmployeeEase is a modern Full Stack Employee Management System designed to simpl
 
 ---
 
-
-
----
-
 ## 🛠️ Tech Stack
 
 | Technology | Description |
@@ -38,19 +39,11 @@ EmployeeEase is a modern Full Stack Employee Management System designed to simpl
 | **Deployment** | Render (Backend), Netlify/Render (Frontend) |
 
 ---
+
 ## ⚙️ Installation & Setup
 
-### 🖥️ Frontend
-```bash
-cd frontend
-npm install
-npm run dev
+### 📦 Clone the Repository
 
-### 🖥️** Backend**
 ```bash
-cd backend
-npm install
-npm run server
-
-#  **Clone the repository**
-git clone https://github.com/MonikaSenger/employeeease.git
+git clone https://github.com/MonikaSenger/Employee_Management_System.git
+cd Employee_Management_System
