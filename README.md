@@ -36,11 +36,9 @@ EmployeeEase is a modern Full Stack Employee Management System designed to simpl
 | **Frontend** | React.js, Tailwind CSS, Axios, Recharts |
 | **Backend**  | Node.js, Express.js, JWT, bcrypt |
 | **Database** | MongoDB with Mongoose |
-| **Deployment** | Render (Backend), Netlify/Render (Frontend) |
+| **Deployment** | Render (Backend), Render (Frontend) |
 
 ---
-
-## ⚙️ Installation & Setup
 
 ### 📦 Clone the Repository
 
