@@ -8,35 +8,21 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 
 const ForgotPasswordPage = () => {
-  const [email, setEmail] = useState("");
-  const { backend, token } = useContext(AppContext);
-  const navigate = useNavigate();
+    const { backend } = useContext(AppContext);
+   const [email, setEmail] = useState()
+    const navigate = useNavigate()
 
-  //  Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!email) return toast.error("Please enter your email");
-
-    try {
-      const { data } = await axios.post(`${backend}/api/users/forget-password`, { email });
-
-      if (data.success) {
-        toast.success("Reset link sent to your email");
-      } else {
-        toast.error(data.message);
-      }
-    } catch (error) {
-      toast.error(error?.response?.data?.message || "Failed to send reset link");
+    axios.defaults.withCredentials = true;
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios.post(`${backend}/forget-password, {email}`)
+        .then(res => {
+            if(res.data.Status === "Success") {
+                navigate('/login')
+               
+            }
+        }).catch(err => console.log(err))
     }
-  };
-
-  // Redirect if user already logged in
-  useEffect(() => {
-    if (token) {
-      navigate("/dashboard");
-    }
-  }, [token, navigate]);
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-gradient-to-br from-pink-100 via-blue-100 to-white">

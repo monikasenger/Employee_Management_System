@@ -129,7 +129,7 @@ const {user,loginWithRedirect}=useAuth0();
 
           {/* Forgot password */}
           <div className="text-right text-sm mb-5">
-            <a href="forgot-password" className="text-blue-600 hover:underline">Forgot password?</a>
+            <a href="forget-password" className="text-blue-600 hover:underline">Forgot password?</a>
           </div>
 
           {/* Login button */}

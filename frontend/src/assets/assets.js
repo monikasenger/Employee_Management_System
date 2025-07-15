@@ -18,6 +18,12 @@ import {
   FaCloudUploadAlt,
 } from "react-icons/fa";
 
+import priyaImg from "./testimonials/priya.jpeg";
+import raviImg from "./testimonials/ravi.jpeg";
+import anjaliImg from "./testimonials/anjali.jpeg";
+import sureshImg from "./testimonials/suresh.jpeg";
+import meeraImg from "./testimonials/meera.jpeg";
+import vikramImg from "./testimonials/vikram.jpeg";
 // 🔹 EMPLOYEES DATA
 export const employees = [
   {
@@ -64,49 +70,43 @@ export const testimoniesData = [
     name: "Priya Sharma",
     role: "HR Manager",
     company: "TechWave Inc.",
-    image: "/assets/testimonials/priya.jpg",
-    feedback:
-      "EmployEase has completely transformed how we manage our remote team. It's fast, intuitive, and beautifully designed.",
+    image: priyaImg,
+    feedback: "EmployEase has completely transformed...",
   },
   {
     name: "Ravi Mehta",
     role: "Operations Lead",
     company: "LogiCore Pvt Ltd",
-    image: "/assets/testimonials/ravi.jpg",
-    feedback:
-      "This platform saves hours of manual tracking. Our productivity improved by 40% after switching to EmployEase.",
+    image: raviImg,
+    feedback: "This platform saves hours of manual tracking...",
   },
   {
     name: "Anjali Verma",
     role: "Team Lead",
     company: "InnoTech Solutions",
-    image: "/assets/testimonials/anjali.jpg",
-    feedback:
-      "I love the UI and task overview. It makes team coordination so much easier. Highly recommended!",
+    image: anjaliImg,
+    feedback: "I love the UI and task overview...",
   },
   {
     name: "Suresh Nair",
     role: "CTO",
     company: "NextGen Software",
-    image: "/assets/testimonials/suresh.jpg",
-    feedback:
-      "EmployEase offers a modern and reliable way to manage tech teams. The analytics and reports are especially useful.",
+    image: sureshImg,
+    feedback: "EmployEase offers a modern and reliable way...",
   },
   {
     name: "Meera Joshi",
     role: "Project Manager",
     company: "SoftBridge Technologies",
-    image: "/assets/testimonials/meera.jpg",
-    feedback:
-      "We’ve seen a 30% improvement in task delivery after switching to EmployEase. It’s perfect for hybrid teams.",
+    image: meeraImg,
+    feedback: "We’ve seen a 30% improvement...",
   },
   {
     name: "Vikram Singh",
     role: "Founder & CEO",
     company: "Growlytics",
-    image: "/assets/testimonials/vikram.jpg",
-    feedback:
-      "From onboarding to daily management, EmployEase simplifies everything. A must-have for startups!",
+    image: vikramImg,
+    feedback: "From onboarding to daily management...",
   },
 ];
 

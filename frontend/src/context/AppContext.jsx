@@ -54,7 +54,7 @@ export const AppProvider = ({ children }) => {
       setRoles(res.data.roles || []);
       setStatuses(res.data.statuses || []);
     } catch (error) {
-      console.error("Error fetching employee filter options:", error);
+      console.error("Error fetching employee filter options: ", error);
     }
   };
 

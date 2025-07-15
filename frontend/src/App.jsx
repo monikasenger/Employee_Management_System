@@ -24,7 +24,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/forget-password" element={<ForgotPasswordPage />} />
           <Route path="/testimonies" element={<TestimoniesPage />} />
           <Route path="/features" element={<FeaturesPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
@@ -33,7 +33,7 @@ function App() {
           <Route path="/tasks" element={<TaskPage />} />
           <Route path="/tasks/add" element={<AddEditTaskForm />} />
           <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/reset-password/:id/:token" element={<ResetPasswordPage />} />
         </Routes>
       </Router>
     </AppProvider>
