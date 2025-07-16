@@ -6,7 +6,7 @@ EmployeeEase is a modern Full Stack Employee Management System designed to simpl
 ## 🌍 Live Demo
 
 👉 **Live URL:**  
-[🔗 EmployeeEase](https://employee-management-system-pugp.onrender.com/)
+[🔗 EmployeeEase](https://employee-management-system-pugp.onrender.com)
 
 ---
 ## 🚀 Features
