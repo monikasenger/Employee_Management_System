@@ -33,12 +33,12 @@ const Navbar = () => {
 
         {/*  Desktop Nav Links + Login (right aligned) */}
         <div className="hidden md:flex items-center gap-6 ml-auto">
-          <a
-            href="testimonies"
-            className="flex items-center gap-1 text-gray-700 hover:text-blue-600 uppercase transition"
-          >
-            <FaComments /> Testimonies
-          </a>
+           <Link
+    to="/testimonies"
+    className="flex items-center gap-1 text-gray-700 hover:text-blue-600 uppercase transition"
+  >
+    <FaComments /> Testimonies
+  </Link>
           <a
             href="#features"
             className="flex items-center gap-1 text-gray-700 hover:text-blue-600 uppercase transition"

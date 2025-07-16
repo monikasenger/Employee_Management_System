@@ -1,3 +1,4 @@
+// AppContext.jsx
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -16,7 +17,15 @@ export const AppProvider = ({ children }) => {
   const [priorities, setPriorities] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // api for Get user profile
+  // ===== System Settings =====
+  const [systemSettings, setSystemSettings] = useState({
+    theme: "light",
+    dateFormat: "dd/mm/yyyy",
+    timezone: "IST",
+    language: "en",
+  });
+
+  // ===== Load User Profile =====
   const loadUserProfileData = async () => {
     try {
       const { data } = await axios.get(`${backend}/api/users/get-profile`, {
@@ -25,6 +34,10 @@ export const AppProvider = ({ children }) => {
 
       if (data.success) {
         setUserData(data.userData);
+        if (data.userData.settings?.system) {
+          const newSettings = data.userData.settings.system;
+          setSystemSettings(newSettings);
+        }
       } else {
         toast.error(data.message);
       }
@@ -34,7 +47,16 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  // api for Get all employees
+  // ===== Sync global system settings changes =====
+  useEffect(() => {
+    if (systemSettings?.theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [systemSettings]);
+
+  // ===== API: Employees & Tasks =====
   const fetchEmployees = async () => {
     try {
       setLoading(true);
@@ -47,7 +69,6 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  // api for Get employee filter options (roles, statuses)
   const fetchEmployeeFilterOptions = async () => {
     try {
       const res = await axios.get(`${backend}/api/employees/filters/options`);
@@ -58,7 +79,6 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  // api for Get all tasks
   const fetchTasks = async () => {
     try {
       const res = await axios.get(`${backend}/api/tasks`);
@@ -68,7 +88,6 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  // api for Get task filter options (statuses, priorities)
   const fetchTaskFilterOptions = async () => {
     try {
       const res = await axios.get(`${backend}/api/tasks/filters/options`);
@@ -79,7 +98,6 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  //  Initial fetch on load
   useEffect(() => {
     fetchEmployees();
     fetchEmployeeFilterOptions();
@@ -87,7 +105,6 @@ export const AppProvider = ({ children }) => {
     fetchTaskFilterOptions();
   }, []);
 
-  //  Load user data if token exists
   useEffect(() => {
     if (token) {
       loadUserProfileData();
@@ -96,7 +113,6 @@ export const AppProvider = ({ children }) => {
     }
   }, [token]);
 
-  // Shared context values
   const value = {
     backend,
     token,
@@ -114,7 +130,13 @@ export const AppProvider = ({ children }) => {
     priorities,
     fetchTasks,
     fetchTaskFilterOptions,
+    systemSettings,
+    setSystemSettings,
   };
 
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={value}>
+      {children}
+    </AppContext.Provider>
+  );
 };

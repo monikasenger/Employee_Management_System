@@ -20,7 +20,10 @@ const EmployeesPage = () => {
     fetchEmployees,
     roles,
     statuses,
+    systemSettings,
   } = useContext(AppContext);
+
+  const isDark = systemSettings?.theme === "dark";
 
   const openSidebar = () => {
     document.dispatchEvent(new Event("openSidebar"));
@@ -81,51 +84,57 @@ const EmployeesPage = () => {
   const toggleDropdown = (id) => {
     setShowDropdown((prev) => (prev === id ? null : id));
   };
+
+  const bgClass = isDark ? "bg-gray-900" : "bg-white";
+  const textClass = isDark ? "text-white" : "text-black";
+  const cardClass = isDark ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200";
+  const inputClass = isDark
+    ? "bg-gray-800 text-white border-gray-600 placeholder-gray-400"
+    : "bg-white text-black border-gray-300";
+
   return (
-    <div className="flex min-h-screen bg-white">
+    <div className={`flex min-h-screen ${bgClass} ${textClass}`}>
       <Sidebar />
 
       <main className="flex-1 px-6 py-6">
         {!showForm && (
           <>
             {/* Mobile Navbar */}
-            <div className="md:hidden mb-4 flex items-center justify-between border-b-2 border-black pb-2">
+            <div className={`md:hidden mb-4 flex items-center justify-between border-b pb-2 ${isDark ? "border-gray-600" : "border-gray-300"}`}>
               <div className="flex items-center gap-3">
                 <button
                   onClick={openSidebar}
-                  className="text-gray-700 bg-white p-2 rounded-md shadow-md"
+                  className={`p-2 rounded-md shadow-md ${isDark ? "bg-gray-800 text-white" : "bg-white text-gray-700"}`}
                 >
                   <FaBars />
                 </button>
-                <h1 className="text-lg font-bold text-gray-800">Employees</h1>
+                <h1 className="text-lg font-bold">Employees</h1>
               </div>
-              <div className="flex items-center gap-4 text-gray-500">
-                <FaSearch className="text-lg cursor-pointer hover:text-blue-600" />
-                <FaBell className="text-lg cursor-pointer hover:text-blue-600" />
+              <div className="flex items-center gap-4">
+                <FaSearch className="text-lg cursor-pointer hover:text-blue-500" />
+                <FaBell className="text-lg cursor-pointer hover:text-blue-500" />
               </div>
             </div>
 
             {/* Desktop Header */}
             <div className="hidden md:flex justify-between items-center mb-6">
               <div>
-                <h1 className="text-3xl font-bold text-gray-800">Employees</h1>
-                <p className="text-sm text-gray-500 mt-1">
+                <h1 className="text-3xl font-bold">Employees</h1>
+                <p className={`${isDark ? "text-gray-400" : "text-gray-500"} text-sm mt-1`}>
                   Manage your team members and their information
                 </p>
               </div>
               <button
                 onClick={openAddForm}
-                className="bg-white border border-purple-500 text-purple-600 font-medium px-4 py-2 rounded-lg hover:bg-purple-50 transition text-sm"
+                className="border border-purple-500 text-purple-600 font-medium px-4 py-2 rounded-lg hover:bg-purple-50 transition text-sm"
               >
                 + Add Employee
               </button>
             </div>
 
             {/* Filters/Search */}
-            <div className="bg-white border rounded-xl p-4 sm:p-6 mb-6">
-              <h2 className="text-base sm:text-lg font-semibold text-gray-700 mb-4">
-                Employee List
-              </h2>
+            <div className={`border rounded-xl p-4 sm:p-6 mb-6 ${cardClass}`}>
+              <h2 className="text-base sm:text-lg font-semibold mb-4">Employee List</h2>
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div className="flex-1 relative">
                   <input
@@ -133,34 +142,30 @@ const EmployeesPage = () => {
                     placeholder="Search employees..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full border rounded-md py-2 pl-10 pr-4 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                    className={`w-full border rounded-md py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 ${inputClass}`}
                   />
                   <FaSearch className="absolute left-3 top-2.5 text-gray-400 text-sm" />
                 </div>
                 <div className="flex gap-3">
                   <select
-                    className="border text-sm rounded-md px-3 py-2"
+                    className={`border text-sm rounded-md px-3 py-2 ${inputClass}`}
                     value={selectedRole}
                     onChange={(e) => setSelectedRole(e.target.value)}
                   >
                     <option value="All">All Roles</option>
                     {roles.map((role) => (
-                      <option key={role} value={role}>
-                        {role}
-                      </option>
+                      <option key={role} value={role}>{role}</option>
                     ))}
                   </select>
 
                   <select
-                    className="border text-sm rounded-md px-3 py-2"
+                    className={`border text-sm rounded-md px-3 py-2 ${inputClass}`}
                     value={selectedStatus}
                     onChange={(e) => setSelectedStatus(e.target.value)}
                   >
                     <option value="All">All Status</option>
                     {statuses.map((status) => (
-                      <option key={status} value={status}>
-                        {status}
-                      </option>
+                      <option key={status} value={status}>{status}</option>
                     ))}
                   </select>
                 </div>
@@ -168,9 +173,9 @@ const EmployeesPage = () => {
             </div>
 
             {/* Employee Table */}
-            <div className="hidden md:block bg-white border rounded-2xl overflow-hidden">
+            <div className={`hidden md:block border rounded-2xl overflow-hidden ${cardClass}`}>
               <table className="w-full text-sm text-left">
-                <thead className="bg-gray-100 text-gray-600 font-medium">
+                <thead className={`${isDark ? "bg-gray-700 text-gray-300" : "bg-gray-100 text-gray-600"} font-medium`}>
                   <tr>
                     <th className="px-6 py-3">Name</th>
                     <th>Email</th>
@@ -180,26 +185,20 @@ const EmployeesPage = () => {
                     <th>Actions</th>
                   </tr>
                 </thead>
-                <tbody className="text-gray-700">
+                <tbody>
                   {filteredEmployees.length > 0 ? (
                     filteredEmployees.map((emp) => (
-                      <tr key={emp._id}>
+                      <tr key={emp._id} className={isDark ? "border-t border-gray-700" : "border-t"}>
                         <td className="px-6 py-3">{emp.name}</td>
                         <td>{emp.email}</td>
                         <td>{emp.role}</td>
                         <td>{emp.department}</td>
                         <td>{emp.status}</td>
                         <td className="flex gap-2 px-6 py-3">
-                          <button
-                            className="text-blue-600"
-                            onClick={() => openEditForm(emp)}
-                          >
+                          <button className="text-blue-400" onClick={() => openEditForm(emp)}>
                             <FaEdit />
                           </button>
-                          <button
-                            className="text-red-600"
-                            onClick={() => deleteEmployee(emp._id)}
-                          >
+                          <button className="text-red-400" onClick={() => deleteEmployee(emp._id)}>
                             <FaTrashAlt />
                           </button>
                         </td>
@@ -207,9 +206,7 @@ const EmployeesPage = () => {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="6" className="text-center text-gray-500 py-4">
-                        No employees found.
-                      </td>
+                      <td colSpan="6" className="text-center py-4 text-gray-400">No employees found.</td>
                     </tr>
                   )}
                 </tbody>
@@ -221,25 +218,22 @@ const EmployeesPage = () => {
               {filteredEmployees.map((emp) => (
                 <div
                   key={emp._id}
-                  className="border rounded-xl p-4 shadow-sm bg-white flex flex-col gap-2 relative"
+                  className={`border rounded-xl p-4 shadow-sm flex flex-col gap-2 relative ${cardClass}`}
                 >
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="font-semibold text-base text-gray-900">
-                        {emp.name}
-                      </h3>
-                      <p className="text-sm text-gray-600">{emp.email}</p>
+                      <h3 className="font-semibold text-base">{emp.name}</h3>
+                      <p className="text-sm text-gray-400">{emp.email}</p>
                     </div>
                     <div className="relative">
                       <button
                         onClick={() => toggleDropdown(emp._id)}
-                        className="text-gray-500 hover:text-gray-700 text-xl font-bold"
+                        className="text-gray-500 hover:text-gray-300 text-xl font-bold"
                       >
                         ⋮
                       </button>
-
                       {showDropdown === emp._id && (
-                        <div className="absolute right-0 mt-2 w-28 bg-white border rounded-md shadow-lg z-10">
+                        <div className={`absolute right-0 mt-2 w-28 border rounded-md shadow-lg z-10 ${isDark ? "bg-gray-900 border-gray-700" : "bg-white"}`}>
                           <button
                             onClick={() => {
                               toggleDropdown(null);
@@ -264,33 +258,21 @@ const EmployeesPage = () => {
                   </div>
 
                   <div className="flex gap-2 flex-wrap">
-                    <span
-                      className={`text-xs px-2 py-1 rounded-full font-semibold ${
-                        emp.role === "Admin"
-                          ? "bg-black text-white"
-                          : "bg-gray-200 text-gray-800"
-                      }`}
-                    >
+                    <span className="text-xs px-2 py-1 rounded-full font-semibold bg-blue-600 text-white">
                       {emp.role}
                     </span>
-                    <span
-                      className={`text-xs px-2 py-1 rounded-full font-semibold ${
-                        emp.status === "Active"
-                          ? "bg-black text-white"
-                          : "bg-gray-300 text-gray-700"
-                      }`}
-                    >
+                    <span className={`text-xs px-2 py-1 rounded-full font-semibold ${
+                      emp.status === "Active" ? "bg-green-600 text-white" : "bg-gray-400 text-white"
+                    }`}>
                       {emp.status}
                     </span>
                   </div>
 
-                  <p className="text-sm text-gray-500">
-                    Department: {emp.department}
-                  </p>
+                  <p className="text-sm text-gray-400">Department: {emp.department}</p>
                 </div>
               ))}
 
-              {/*  Mobile +Add Employee Button */}
+              {/* Mobile +Add Button */}
               <button
                 onClick={openAddForm}
                 className="w-full bg-purple-600 text-white font-medium py-2 rounded-lg shadow hover:bg-purple-700 transition text-sm mt-4"
@@ -301,9 +283,9 @@ const EmployeesPage = () => {
           </>
         )}
 
-        {/* Form */}
+        {/* Form Component */}
         <AddEditEmployeeForm
-         mode={formMode}
+          mode={formMode}
           employeeData={employeeToEdit}
           onCancel={cancelForm}
           onSave={saveEmployee}

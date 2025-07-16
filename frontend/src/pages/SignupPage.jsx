@@ -54,7 +54,7 @@ console.log('current user',user);
       localStorage.setItem("token", data.token);
       setToken(data.token);
       toast.success("Account created successfully!");
-      navigate("/dashboard");
+      navigate("/login");
     } else {
       toast.error(data.message || "Signup failed");
     }

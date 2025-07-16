@@ -71,44 +71,51 @@ export const testimoniesData = [
     role: "HR Manager",
     company: "TechWave Inc.",
     image: priyaImg,
-    feedback: "EmployEase has completely transformed...",
+    feedback:
+      "EmployEase has completely transformed how we manage our remote team. It's fast, intuitive, and beautifully designed.",
   },
   {
     name: "Ravi Mehta",
     role: "Operations Lead",
     company: "LogiCore Pvt Ltd",
     image: raviImg,
-    feedback: "This platform saves hours of manual tracking...",
+    feedback:
+      "This platform saves hours of manual tracking. Our productivity improved by 40% after switching to EmployEase.",
   },
   {
     name: "Anjali Verma",
     role: "Team Lead",
     company: "InnoTech Solutions",
     image: anjaliImg,
-    feedback: "I love the UI and task overview...",
+    feedback:
+      "I love the UI and task overview. It makes team coordination so much easier. Highly recommended!",
   },
   {
     name: "Suresh Nair",
     role: "CTO",
     company: "NextGen Software",
     image: sureshImg,
-    feedback: "EmployEase offers a modern and reliable way...",
+    feedback:
+      "EmployEase offers a modern and reliable way to manage tech teams. The analytics and reports are especially useful.",
   },
   {
     name: "Meera Joshi",
     role: "Project Manager",
     company: "SoftBridge Technologies",
     image: meeraImg,
-    feedback: "We’ve seen a 30% improvement...",
+    feedback:
+      "We’ve seen a 30% improvement in task delivery after switching to EmployEase. It’s perfect for hybrid teams.",
   },
   {
     name: "Vikram Singh",
     role: "Founder & CEO",
     company: "Growlytics",
     image: vikramImg,
-    feedback: "From onboarding to daily management...",
+    feedback:
+      "From onboarding to daily management, EmployEase simplifies everything. A must-have for startups!",
   },
 ];
+
 
 
 // 🔹 FEATURES DATA

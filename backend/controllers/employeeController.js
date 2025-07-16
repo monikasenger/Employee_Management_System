@@ -13,14 +13,20 @@ export const getAllEmployees = async (req, res) => {
 // CREATE employee
 export const createEmployee = async (req, res) => {
   try {
+    console.log("Incoming employee data:", req.body); //  Debug log
+
     const { name, role, email, department, status } = req.body;
     const employee = new Employee({ name, role, email, department, status });
     const saved = await employee.save();
-    res.status(201).json(saved);
+
+    return res.status(201).json(saved);
   } catch (error) {
-    res.status(500).json({ message: "Error creating employee" });
+    console.error("Error creating employee:", error); //  Full error log
+    return res.status(500).json({ message: error.message || "Error creating employee" });
   }
 };
+
+
 
 // UPDATE employee
 export const updateEmployee = async (req, res) => {
